@@ -1,6 +1,11 @@
+<?php
+header_remove('Access-Control-Allow-Origin');
+header('Access-Control-Allow-Origin: *');
+?>
 <!doctype html>
 <html lang="en">
 <?php
+    //private
     require_once("./modules/YumDB.class.php");
     $yumDB = new YumDB();
     //$user = $yumDB->selectUser($_GET['id']);
@@ -16,13 +21,14 @@
     <link rel="stylesheet" href="./css/style.css" media="screen" title="no title" charset="utf-8">
 </head>
 <body>
+    <!-- <p style="font-size:0.4em;"><?php //var_dump($home); ?></p> -->
     <canvas id="canvas"></canvas>
 
     <h2 id="title-yumyum" class="tuio-tapEvent">yum yum</h2>
     <h4 id="subtitle-yumyum" class="small-text-white">知識を美味しくいただきます。</h4>
     <div id="time-num-group"></div>
 
-    <div><img id="test-picture" class="tuio-tapEvent" src="./images/user/user_test.jpg" alt="" /></div>
+    <!-- <div><img id="test-picture" class="tuio-tapEvent" src="./images/user/user_test.jpg" alt="" /></div> -->
 
     <div id="menus">
         <i id="menu-controller" class="fa fa-plus-circle tuio-tapEvent"></i>
@@ -32,6 +38,7 @@
         <div id="menu-back" class="menu-wrap tuio-tapEvent"><i class="fa fa-arrow-left"></i></div>
     </div>
 
+    <div id="upload-picture"></div>
 
     <!-- load scripts -->
     <script src="../lib/tuio/jquery-1.7.2.js"></script>
@@ -42,6 +49,7 @@
     <script src="../lib/slider/jquery.bxslider.js"></script>
     <script src="../lib/jquery-transform/jquery-css-transform.js"></script>
     <script src="../lib/jquery-transform/jquery-animate-css-rotate-scale.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="./js/init.js"></script>
     <script src="./js/menu.js"></script>
     <script src="./js/time.js"></script>

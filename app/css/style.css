@@ -532,25 +532,12 @@ transform: scale3d(0.8, 0.5, 1);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#test-picture {
-    width: 200px;
+/* ------------------------------------------- */
+/*                picture.php                  */
+/* ------------------------------------------- */
+#upload-picture img {
+    width: 250px;
     height: auto;
     position: absolute;
-    top: 100px;
-    left:300px;
+    opacity: 0;
 }
