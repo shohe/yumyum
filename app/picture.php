@@ -5,10 +5,25 @@ header('Access-Control-Allow-Origin: *');
 <!doctype html>
 <html lang="en">
 <?php
-    //private
-    require_once("./modules/YumDB.class.php");
-    $yumDB = new YumDB();
-    //$user = $yumDB->selectUser($_GET['id']);
+    // twitter
+    require_once("../lib/twitteroauth/autoload.php");
+    use Abraham\TwitterOAuth\TwitterOAuth;
+
+    $consumerKey = "qdQGDb97sTCJIDKFAOkByxOBS";
+    $consumerSecret = "iX2xbmY3skcr8P3U3Xn9msVdU8FvOI5mqiNyPj4YFZbYDSH3q3";
+    $accessToken = "4292646147-wF79TR9fwfWsVv6Npue05cqvzp2oAmwEdZk8Sxd";
+    $accessTokenSecret = "NbZ7R9E7BnlYWnZyJ4aVAFWg4Mg6WTZ9PgzaeLtdHZ51R";
+    $twitter = new TwitterOAuth($consumerKey,$consumerSecret,$accessToken,$accessTokenSecret);
+    $req = $twitter->get("statuses/home_timeline", array("count" => 25, "exclude_replies" => true));
+    if (isset($req)) {
+        foreach ($req as $key => $val) {
+            //var_dump($req[$key]);
+            if (strstr($req[$key]->text, 'https://t.co/')) {
+                $urls[] = strstr($req[$key]->text, 'https://t.co/');
+            }
+        }
+        $json_url = json_encode($urls);
+    }
 ?>
 <head>
     <meta charset="utf-8">
@@ -19,9 +34,9 @@ header('Access-Control-Allow-Origin: *');
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="../lib/font-awesome/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="./css/style.css" media="screen" title="no title" charset="utf-8">
+    <script type="text/javascript">var json_url = JSON.parse('<?php echo  $json_url; ?>');</script>
 </head>
 <body>
-    <!-- <p style="font-size:0.4em;"><?php //var_dump($home); ?></p> -->
     <canvas id="canvas"></canvas>
 
     <h2 id="title-yumyum" class="tuio-tapEvent">yum yum</h2>
@@ -39,8 +54,7 @@ header('Access-Control-Allow-Origin: *');
     </div>
 
     <div id="upload-picture">
-        <img id="test-picture" class="tuio-tapEvent" src="./images/user/user_test.jpg" alt="" style="top:200px;left:200px;opacity:1;"/>
-        <img id="test-picture" class="tuio-tapEvent" src="./images/user/user_test.jpg" alt="" style="top:200px;left:900px;opacity:1;"/>
+        <!-- <img id="test-picture" class="tuio-tapEvent" src="./images/user/user_test.jpg" alt="" style="top:200px;left:200px;opacity:1;"/> -->
     </div>
 
     <!-- load scripts -->

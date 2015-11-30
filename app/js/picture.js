@@ -154,6 +154,12 @@ $(function() {
         })
     }
 
+    var init = function() {
+        for (var i = 0; i < json_url.length; i++) {
+            httpget(json_url[i]);
+        }
+    }
+
     socket.on('msg', function(data) {
         index = data.indexOf('https://t.co/');
         if ( index != -1) {
@@ -161,4 +167,6 @@ $(function() {
             httpget(media_url);
         }
     });
+
+    init();
 });
