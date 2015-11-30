@@ -35,21 +35,72 @@ $(function() {
 
 
 // #picture
-var tapX = 0;
-var tapY = 0;
+var offsetDiff = {"p": 0, "q": 0};
+var select = null;
+var isSelect = false;
 function addPicture(image) {
     image.css({left:SCREEN_W/2-image.width()/2-120, top:SCREEN_H, opacity:0});
     image.animate({top:SCREEN_H/2-image.height()/2-100, opacity:1}, 1000);
     $("#upload-picture").append(image);
 
+    $('#upload-picture img').on('tapDown', function(e, x, y) {
+        $("#upload-picture .tuio-tapEvent").each( function() {
+            $(this).removeClass('activeFingerAction');
+        });
+        select = $(this);
+        select.addClass('activeFingerAction');
+        isSelect = true;
+
+        offsetDiff.p = x - $(this).offset().left;
+        offsetDiff.q = y - $(this).offset().top;
+    });
+
+    $('#upload-picture img').on('tapUp', function(e, x, y) {
+        isSelect = false;
+        offsetDiff = {"p": 0, "q": 0};
+    });
+
     $('#upload-picture img').on('tapMove', function(e, x, y) {
-        $(this).css({top: y-$(this).height()/2+'px', left: x-$(this).width()/2+'px'});
+        var top = y - offsetDiff.q;
+        var left = x - offsetDiff.p;
+        if (isSelect) select.css({top: top, left: left});
     });
 
     $('#upload-picture img').on('pichAction', function(e, dis) {
         $(this).css({width: '+='+dis%10+'px'});
     });
 };
+
+// test
+$(function() {
+    $('#upload-picture img').on('tapDown', function(e, x, y) {
+        $("#upload-picture .tuio-tapEvent").each( function() {
+            $(this).removeClass('activeFingerAction');
+        });
+        select = $(this);
+        select.addClass('activeFingerAction');
+        isSelect = true;
+
+        offsetDiff.p = x - $(this).offset().left;
+        offsetDiff.q = y - $(this).offset().top;
+    });
+
+    $('#upload-picture img').on('tapUp', function(e, x, y) {
+        isSelect = false;
+        offsetDiff = {"p": 0, "q": 0};
+    });
+
+    $('#upload-picture img').on('tapMove', function(e, x, y) {
+        var top = y - offsetDiff.q;
+        var left = x - offsetDiff.p;
+        if (isSelect) select.css({top: top, left: left});
+    });
+
+    $('#upload-picture img').on('pichAction', function(e, dis) {
+        isSelect = false;
+        $(this).css({width:'+='+dis, top:'-='+dis/2, left:'-='+dis/2});
+    });
+})
 
 
 // twitter

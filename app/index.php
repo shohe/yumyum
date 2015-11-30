@@ -18,7 +18,6 @@
 
     <h2 id="title-yumyum" class="tuio-tapEvent">yum yum</h2>
     <h4 id="subtitle-yumyum" class="small-text-white">知識を美味しくいただきます。</h4>
-    <h4 id="user-choose" class="small-text-white">どちら様がご利用なさいますか？</h4>
     <div href="#" id="get-stated-button" class="tuio-tapEvent">はじめる</div>
 
     <img id="hashi" src="./images/hashi.png" style="width:auto; height:25px; position:absolute;" alt="" />

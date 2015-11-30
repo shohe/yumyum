@@ -83,14 +83,18 @@ $(function() {
     client.on("refresh", onRefresh);
     client.connect();
 });
-
+var SAVE = 0;
 function fingerAction(cursor) {
     var currentDis = calcDistance(FINGER[0].getScreenX(SCREEN_W), FINGER[0].getScreenY(SCREEN_H), FINGER[1].getScreenX(SCREEN_W), FINGER[1].getScreenY(SCREEN_H));
+    var d = Math.round(currentDis - SAVE_DIS);
     $(".tuio-tapEvent").each( function() {
-        offset = $(this).offset();
-        isRangeX = ( offset.left <= x && (offset.left + $(this).width()) >= x ) ? true : false;
-        isRangeY = ( offset.top <= y && (offset.top + $(this).height()) >= y ) ? true : false;
-        if ( isRangeX && isRangeY ) {$(this).trigger('pichAction', currentDis - SAVE_DIS);}
+        if ( $(this).hasClass("activeFingerAction") ) {
+            if (SAVE != d) {
+                $(this).trigger('pichAction', d);
+                SAVE = d;
+                SAVE_DIS = 0;
+            }
+        }
     });
 }
 

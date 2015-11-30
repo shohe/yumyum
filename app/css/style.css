@@ -541,3 +541,9 @@ transform: scale3d(0.8, 0.5, 1);
     position: absolute;
     opacity: 0;
 }
+.activeFingerAction {
+    border-color: #008fdf;
+    border-width: 2px;
+    border-style: solid;
+    z-index: 1;
+}

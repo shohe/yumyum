@@ -38,7 +38,11 @@ header('Access-Control-Allow-Origin: *');
         <div id="menu-back" class="menu-wrap tuio-tapEvent"><i class="fa fa-arrow-left"></i></div>
     </div>
 
-    <div id="upload-picture"></div>
+    <div id="upload-picture">
+        <img id="test-picture" class="tuio-tapEvent" src="./images/user/user_test.jpg" alt="" style="top:200px;left:200px;opacity:1;"/>
+        <img id="test-picture" class="tuio-tapEvent" src="./images/user/user_test.jpg" alt="" style="top:200px;left:600px;opacity:1;"/>
+        <img id="test-picture" class="tuio-tapEvent" src="./images/user/user_test.jpg" alt="" style="top:200px;left:900px;opacity:1;"/>
+    </div>
 
     <!-- load scripts -->
     <script src="../lib/tuio/jquery-1.7.2.js"></script>
