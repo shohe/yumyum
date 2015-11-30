@@ -549,5 +549,6 @@ transform: scale3d(0.8, 0.5, 1);
     border-color: #008fdf;
     border-width: 2px;
     border-style: solid;
+    box-shadow: 0 0 20px #777;
     z-index: 1;
 }
