@@ -67,12 +67,26 @@ function addPicture(image) {
     });
 
     $('#upload-picture img').on('pichAction', function(e, dis) {
-        $(this).css({width: '+='+dis%10+'px'});
+        isSelect = false;
+        $(this).css({width:'+='+dis*1.5, top:'-='+dis*1.5/2, left:'-='+dis*1.5/2});
     });
 };
 
-// test
+// init
 $(function() {
+    var uploadPicture = $("#upload-picture");
+
+    var init = function() {
+        uploadPicture.css({left : SCREEN_W, opacity: 0}, 1000);
+        uploadPicture.animate({left : 0, opacity: 1}, 1000);
+    }
+    uploadPicture.on('back', function() {
+        uploadPicture.animate({left : SCREEN_W, opacity: 0}, 1000);
+    });
+
+    init();
+
+    // test ========================
     $('#upload-picture img').on('tapDown', function(e, x, y) {
         $("#upload-picture .tuio-tapEvent").each( function() {
             $(this).removeClass('activeFingerAction');
@@ -100,6 +114,12 @@ $(function() {
         isSelect = false;
         $(this).css({width:'+='+dis, top:'-='+dis/2, left:'-='+dis/2});
     });
+
+    $('#upload-picture img').on('rotateAction', function(e, radian) {
+        isSelect = false;
+        $(this).css({transform: 'rotate(' + (radian * Math.PI * -10) + 'deg)'});
+    });
+    // ========================
 })
 
 

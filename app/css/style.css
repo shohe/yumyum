@@ -535,6 +535,10 @@ transform: scale3d(0.8, 0.5, 1);
 /* ------------------------------------------- */
 /*                picture.php                  */
 /* ------------------------------------------- */
+#upload-picture {
+    position: absolute;
+    opacity: 0;
+}
 #upload-picture img {
     width: 250px;
     height: auto;

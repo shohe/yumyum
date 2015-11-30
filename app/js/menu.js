@@ -28,6 +28,7 @@ $(function() {
         $("#friends-wrap").trigger("back");
         $("#call-load").trigger("back");
         $('#container').trigger("back");
+        $("#upload-picture").trigger("back");
         $("#menus").animate({rotate: "360deg", opacity:0, bottom:"-200px"}, 1000);
     }
 

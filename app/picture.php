@@ -40,7 +40,6 @@ header('Access-Control-Allow-Origin: *');
 
     <div id="upload-picture">
         <img id="test-picture" class="tuio-tapEvent" src="./images/user/user_test.jpg" alt="" style="top:200px;left:200px;opacity:1;"/>
-        <img id="test-picture" class="tuio-tapEvent" src="./images/user/user_test.jpg" alt="" style="top:200px;left:600px;opacity:1;"/>
         <img id="test-picture" class="tuio-tapEvent" src="./images/user/user_test.jpg" alt="" style="top:200px;left:900px;opacity:1;"/>
     </div>
 
