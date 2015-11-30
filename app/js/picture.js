@@ -90,6 +90,41 @@ $(function() {
     });
 
     init();
+
+    // test ========================
+    $('#upload-picture img').on('tapDown', function(e, x, y) {
+        $("#upload-picture .tuio-tapEvent").each( function() {
+            $(this).removeClass('activeFingerAction');
+        });
+        select = $(this);
+        select.addClass('activeFingerAction');
+        isSelect = true;
+
+        offsetDiff.p = x - $(this).offset().left;
+        offsetDiff.q = y - $(this).offset().top;
+    });
+
+    $('#upload-picture img').on('tapUp', function(e, x, y) {
+        isSelect = false;
+        offsetDiff = {"p": 0, "q": 0};
+    });
+
+    $('#upload-picture img').on('tapMove', function(e, x, y) {
+        var top = y - offsetDiff.q;
+        var left = x - offsetDiff.p;
+        if (isSelect) select.css({top: top, left: left});
+    });
+
+    $('#upload-picture img').on('pichAction', function(e, dis) {
+        isSelect = false;
+        $(this).css({width:'+='+dis, top:'-='+dis/2, left:'-='+dis/2});
+    });
+
+    $('#upload-picture img').on('rotateAction', function(e, radian) {
+        isSelect = false;
+        $(this).css({transform: 'rotate(' + (radian * Math.PI * -10) + 'deg)'});
+    });
+    // ========================
 })
 
 
