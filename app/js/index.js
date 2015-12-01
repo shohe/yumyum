@@ -131,7 +131,7 @@ $(function() {
     });
 
     var init = function() {
-        dottedLine.css({left: SCREEN_W/2 - dottedLine.width()/2-28, top: SCREEN_H/2 - dottedLine.height()/2-38});
+        dottedLine.css({left: SCREEN_W/2 - dottedLine.width()/2-10, top: SCREEN_H/2 - dottedLine.height()/2-38});
         dottedLine.addClass("cercle-anim");
         userWrap.css("bottom", -SCREEN_H / 2);
         var mouseEvent = document.createEvent("MouseEvents");

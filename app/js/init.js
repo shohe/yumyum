@@ -83,14 +83,25 @@ $(function() {
     client.on("refresh", onRefresh);
     client.connect();
 });
-
+var SAVE = 0;
+var _SAVE = 0;
 function fingerAction(cursor) {
     var currentDis = calcDistance(FINGER[0].getScreenX(SCREEN_W), FINGER[0].getScreenY(SCREEN_H), FINGER[1].getScreenX(SCREEN_W), FINGER[1].getScreenY(SCREEN_H));
+    var d = Math.round(currentDis - SAVE_DIS);
+    var r = calcRadidan(FINGER[0].getScreenX(SCREEN_W), FINGER[0].getScreenY(SCREEN_H), FINGER[1].getScreenX(SCREEN_W), FINGER[1].getScreenY(SCREEN_H));
     $(".tuio-tapEvent").each( function() {
-        offset = $(this).offset();
-        isRangeX = ( offset.left <= x && (offset.left + $(this).width()) >= x ) ? true : false;
-        isRangeY = ( offset.top <= y && (offset.top + $(this).height()) >= y ) ? true : false;
-        if ( isRangeX && isRangeY ) {$(this).trigger('pichAction', currentDis - SAVE_DIS);}
+        if ( $(this).hasClass("activeFingerAction") ) {
+            if (SAVE != d) {
+                $(this).trigger('pichAction', d);
+                SAVE = d;
+                SAVE_DIS = 0;
+            }
+            if (_SAVE != r) {
+                $(this).trigger('rotateAction', r);
+                console.log(r);
+                _SAVE = r;
+            }
+        }
     });
 }
 
@@ -99,6 +110,12 @@ function calcDistance(x1, y1, x2, y2) {
     var a = x1 - x2;
     var b = y1 - y2;
     return Math.sqrt( Math.pow(a, 2) + Math.pow(b, 2) );
+}
+
+// calc radian
+function calcRadidan(x1, y1, x2, y2) {
+    var radian = Math.atan2(x2 - x1, y2 - y1);
+    return radian;
 }
 
 // - debuger
