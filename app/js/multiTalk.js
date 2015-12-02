@@ -124,7 +124,7 @@ function answerCall(call) {
 }
 
 /**
- * 複数人通話の開始、ビデオの表示と削除を行うメソッド
+ * 複数人通話の開始
  */
 function setUpAndMultiCall() {
 	multiparty = new MultiParty ({
@@ -158,7 +158,7 @@ function multiCallProcess() {
 }
 
 /**
- * かける相手のボタンを押された場合のメソッド<br>
+ * かけるボタンを押された場合のメソッド<br>
  * 応答用メソッドを呼び出す
  */
 function makeCall(callTo) {
