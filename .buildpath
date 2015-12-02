@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="src" path="camera_module"/>
+	<buildpathentry kind="src" path="app"/>
+	<buildpathentry kind="src" path="lib/twitteroauth"/>
+	<buildpathentry kind="src" path="lib/facebook-php-sdk"/>
+	<buildpathentry kind="src" path="lib/phirehose"/>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+	<buildpathentry kind="lib" path="node_modules/socket.io/node_modules/socket.io-client/lib/vendor/web-socket-js/WebSocketMainInsecure.zip"/>
+</buildpath>

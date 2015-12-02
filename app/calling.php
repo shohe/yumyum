@@ -19,7 +19,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <script type="text/javascript" src="./js/peer.js"></script>
-    <script type="text/javascript" src="./js/peerCall.js"></script>
     <link rel="stylesheet" href="../lib/slider/jquery.bxslider.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="../lib/font-awesome/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="./css/style.css" media="screen" title="no title" charset="utf-8">
