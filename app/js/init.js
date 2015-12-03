@@ -98,7 +98,6 @@ function fingerAction(cursor) {
             }
             if (_SAVE != r) {
                 $(this).trigger('rotateAction', r);
-                console.log(r);
                 _SAVE = r;
             }
         }

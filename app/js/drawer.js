@@ -4,6 +4,9 @@ var CLIENT = null, SCREEN_W = null, SCREEN_H = null;
 var COLOURS = [ ], COLOURS_P = [ ], POINTS = [ ];
 var COLOUR;
 var LEFT_MARGIN = 30;
+var IS_CHANGE_WIDTH = false;
+var PEN_WIDTH = MIN_WIDTH = 4;
+var SAVE_POINT_FOR_PEN = null;
 
 var drawerSketch = Sketch.create({
 
@@ -58,17 +61,36 @@ function drawArc(ctx, dist, angle, p, uc) {
         y = p.y + (Math.cos(angle) * i) - 25;
         ctx.fillStyle = ctx.strokeStyle = COLOUR;
         ctx.beginPath();
-        ctx.arc(x+10, y+10, 6, false, Math.PI * 2, false);
+        /// ※ もしペン先の位置調整する時はここを修正してください。
+        ctx.arc(x+25, y+25, PEN_WIDTH, false, Math.PI * 2, false);
         ctx.closePath();
         ctx.fill();
         ctx.stroke();
     }
+}
+function updatePenWidth(point) {
+    SAVE_POINT_FOR_PEN = (SAVE_POINT_FOR_PEN == null) ? point : SAVE_POINT_FOR_PEN;
+    var dis = calcDistance(SAVE_POINT_FOR_PEN.x, SAVE_POINT_FOR_PEN.y, point.x, point.y);
+    PEN_WIDTH = (dis >= MIN_WIDTH) ? dis : MIN_WIDTH;
+
+    drawerSketch.clear();
+    drawerSketch.strokeStyle = "#fff";
+    drawerSketch.lineWidth = 1.5;
+    drawerSketch.beginPath();
+    drawerSketch.arc(SCREEN_W/2 - PEN_WIDTH/2 + dis/2, SCREEN_H/2 - PEN_WIDTH/2 + dis/2, PEN_WIDTH, false, Math.PI * 2, false);
+    drawerSketch.closePath();
+    drawerSketch.stroke();
 }
 
 onAddTuioCursor = function(addCursor) {
     var point = [ ];
     point.push({ x: addCursor.getScreenX(SCREEN_W), y: addCursor.getScreenY(SCREEN_H) });
     POINTS[addCursor.sessionId] = point;
+    chkColor( point );
+    if (IS_CHANGE_WIDTH) {
+        var p = point[0];
+        updatePenWidth(p);
+    }
 },
 
 onUpdateTuioCursor = function(updateCursor) {
@@ -77,8 +99,15 @@ onUpdateTuioCursor = function(updateCursor) {
 
     var dist = distanceBetween( POINTS[uc.sessionId], currentPoints );
     var angle = angleBetween( POINTS[uc.sessionId], currentPoints );
-    drawArc( drawerSketch, dist, angle, POINTS[uc.sessionId], uc );
+    if (!IS_CHANGE_WIDTH) {
+        drawArc( drawerSketch, dist, angle, POINTS[uc.sessionId], uc );
+    }
     POINTS[uc.sessionId] = currentPoints;
+
+    var point = { x: updateCursor.getScreenX(SCREEN_W), y: updateCursor.getScreenY(SCREEN_H) };
+    if (IS_CHANGE_WIDTH) {
+        updatePenWidth(point);
+    }
 },
 
 onRemoveTuioCursor = function(removeCursor) {
@@ -86,6 +115,12 @@ onRemoveTuioCursor = function(removeCursor) {
     var point = [ ];
     point.push({ x: removeCursor.getScreenX(SCREEN_W), y: removeCursor.getScreenY(SCREEN_H) });
     chkColor( point );
+
+    if (IS_CHANGE_WIDTH) {
+        drawerSketch.clear();
+        IS_CHANGE_WIDTH = false;
+        SAVE_POINT_FOR_PEN = null;
+    }
 };
 
 CLIENT.on("addTuioCursor", onAddTuioCursor);
@@ -99,13 +134,13 @@ chkColor = function(point) {
     for ( var i = 0; i < COLOURS_P.length; i++ ) {
         if (COLOURS_P[i].x <= point[0].x && COLOURS_P[i].x + COLOURS_P[i].w >= point[0].x &&
             COLOURS_P[i].y <= point[0].y && COLOURS_P[i].y + COLOURS_P[i].h >= point[0].y) {
-                 if (i == COLOURS_P.length - 1) {
-                    drawerSketch.clear();
-                    return;
-                 }
-
-                 COLOUR = COLOURS[i];
-                 changeColor( i );
+            if (i == COLOURS_P.length - 1) {
+                drawerSketch.clear();
+                IS_CHANGE_WIDTH = true;
+                return;
+            }
+            COLOUR = COLOURS[i];
+            changeColor( i );
         }
     }
 };
