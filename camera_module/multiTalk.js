@@ -23,8 +23,9 @@ var mediaObjectURL;
  */
 function setUpPeer(id) {
 	// Peerオブジェクトに任意のIDを振る
-	var name = document.getElementById("phone").value;
-	peer = new Peer(name, {
+	//var name = document.getElementById("phone").value;
+	var call_id = 1;
+	peer = new Peer(call_id, {
 		key : '77196e40-7803-4e99-ac69-e0b133e711e9',
 		debug : 3
 	});
