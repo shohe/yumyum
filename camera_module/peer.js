@@ -922,7 +922,7 @@ Peer.prototype._retrieveId = function(id) {
         'you\'ll also need to pass in that same path when creating a new ' +
         'Peer.';
     }
-    self._abort('server-error', 'Could not get an ID from the server.' + pathError);
+    //self._abort('server-error', 'Could not get an ID from the server.' + pathError);
   };
   http.onreadystatechange = function() {
     if (http.readyState !== 4) {
