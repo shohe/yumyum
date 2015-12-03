@@ -41,6 +41,9 @@
         <span></span>
     </div>
 
+    <input type="hidden" id="peerId" value="<?php echo $friends->getPhoneNumber(); ?>">
+    <video id="my-video" autoplay="autoplay"></video>
+
     <div id="menus">
         <i id="menu-controller" class="fa fa-plus-circle tuio-tapEvent"></i>
         <div id="menu-phone" class="menu-wrap tuio-tapEvent" style="background:rgba(255,255,255,0.4);"><i class="fa fa-phone"></i></div>
@@ -58,9 +61,14 @@
     <script src="../lib/slider/jquery.bxslider.js"></script>
     <script src="../lib/jquery-transform/jquery-css-transform.js"></script>
     <script src="../lib/jquery-transform/jquery-animate-css-rotate-scale.js"></script>
+    <script src="../lib/peer/peer.js"></script>
+    <script src="../lib/peer/multiparty.js"></script>
+    <script src="../lib/peer/multiTalk.js"></script>
     <script src="./js/init.js"></script>
     <script src="./js/menu.js"></script>
     <script src="./js/time.js"></script>
     <script src="./js/calling.js"></script>
+
+    <script type="text/javascript">setUpPeer()</script>
 </body>
 </html>
