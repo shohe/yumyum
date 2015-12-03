@@ -1,62 +1,63 @@
-�iSkyway�̐ݒ�j
-https://nttcom.github.io/skyway/���烍�O�C������B
+（Skywayの設定）
+https://nttcom.github.io/skyway/からログインする。
 
-�A�h���X�Fyuta.suzuki.428.vsw@gmail.com
-�p�X���[�h�FShousa0623
+アドレス：yuta.suzuki.428.vsw@gmail.com
+パスワード：Shousa0623
 
-�ݒ�ύX���痘�p�\�h���C����PC��IP�A�h���X��ݒ肷��B
+設定変更から利用可能ドメインにPCのIPアドレスを設定する。
 
-����ȊO�͕ύX���ցB
+それ以外は変更厳禁。
 
-������������������������������������������������������������
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
-�imultiTalk.js���g�����ʘb�����j
+（multiTalk.jsを使った通話実装）
 https://nttcom.github.io/skyway/docs/#JS
 https://github.com/nttcom/SkyWay-MultiParty
 
-�ȏ�̃T�C�g���Q�l�ɂ��Ă���B
+以上のサイトも参考にしてくれ。
 
-�ʘb�̗���Ƃ��ẮA
-�P�A�N���E�h��̃T�[�o�[�ɐڑ�����Peer�I�u�W�F�N�g�𐶐�
-�Q�A������w�肵�Ēʘb�v�����o��
-�R�A�ʘb�v�����󂯎�����牞������
-�S�A�ʘb�ɏo����MultiParty�I�u�W�F�N�g�𐶐����ĕ����l�ʘb�J�n
+通話の流れとしては、
+１、クラウド上のサーバーに接続してPeerオブジェクトを生成
+２、相手を指定して通話要求を出す
+３、通話要求を受け取ったら応答する
+４、通話に出たらMultiPartyオブジェクトを生成して複数人通話開始
 
-����A�P�ƂS�̂Ƃ���ŃJ�����ƃ}�C�N�̊m�F�_�C�A���O���o��B
-����ɂ��Ă͐F�X��������C���s�B
+現状、１と４のところでカメラとマイクの確認ダイアログが出る。
+これについては色々やったが修正不可。
 
-��������������������������������������������������������������
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
-�i�P�A�N���E�h��̃T�[�o�[�ɐڑ�����Peer�I�u�W�F�N�g�𐶐��j
-�܂��AsetUpPeer�֐����ĂԁB�I�u�W�F�N�g�������ł���΃J�����̊m�F�_�C�A���O�o���B
-
-
-�i�Q�A������w�肵�Ēʘb�v�����o���j
-makeCall�֐����Ăяo���Ēʘb�v�����o���B���̎��A������phone_number�n���B
+（１、クラウド上のサーバーに接続してPeerオブジェクトを生成）
+まず、setUpPeer関数を呼ぶ。オブジェクトが生成できればカメラの確認ダイアログ出るよ。
 
 
-�i�R�A�ʘb�v�����󂯎�����牞������j
-�ʘb�v�����󂯎���peer.on('call', function(call) {...���Ă΂��B
-���̊֐����ł́A�ʘb�v�����������Ƃ�m�点��ʃE�B���h�E���J���Ă���icallReceive.php�j�B
-callReceive.php�ł�multiTalk.js��callPermit�ɋ��E���ۂ�ݒ肵�A
-callPermitCheck�֐����Ă�ł���B�������u�o��v��������A���f�B�A�X�g���[�����Z�b�g���A
-answerCall�֐����ĂԁB
+（２、相手を指定して通話要求を出す）
+makeCall関数を呼び出して通話要求を出す。この時、引数でpeerId（実際はphone_number列の値）渡す。
+peerIdはmulti.php内に<input type="hidden">で記述してある。
 
 
-�i�S�A�ʘb�ɏo����MultiParty�I�u�W�F�N�g�𐶐����ĕ����l�ʘb�J�n�j
-answerCall�֐�����Ă΂��setUpMultiCall�֐��ŕ����l�ʘb�p�I�u�W�F�N�g�𐶐�����B
-���̊֐����ł���ɁAmultiCallProcess�֐����Ăы�̓I�ȏ���������B
-�Ō��multiparty.start()�ŃT�[�o�[�ɐڑ����ʘb�J�n�B
-multiCallProcess�֐��ł���Ă邱�Ƃ̓��t�@�����X����΂܂�܍ڂ��Ă�B
+（３、通話要求を受け取ったら応答する）
+通話要求を受け取るとpeer.on('call', function(call) {...が呼ばれる。
+この関数内では、通話要求が来たことを知らせる別ウィンドウを開いている（callReceive.php）。
+callReceive.phpではmultiTalk.jsのcallPermitに許可・拒否を設定し、
+callPermitCheck関数を呼んでいる。応答が「出る」だったら、メディアストリームをセットし、
+answerCall関数を呼ぶ。
 
 
-multiTalk.js�̈�ԉ��ɂ���endCall�֐��Œʘb�I�����O�̃y�[�W�ɖ߂�B
+（４、通話に出たらMultiPartyオブジェクトを生成して複数人通話開始）
+answerCall関数から呼ばれるsetUpMultiCall関数で複数人通話用オブジェクトを生成する。
+この関数内でさらに、multiCallProcess関数を呼び具体的な処理をする。
+最後のmultiparty.start()でサーバーに接続し通話開始。
+multiCallProcess関数でやってることはリファレンス見ればまんま載ってる。
 
 
-���Ȃ݂ɁA����js�t�@�C�����g���ɂ�peer.js�@���@multiparty.js�@���@multiTalk.js
-�̏��œǂݍ���ŁB
+multiTalk.jsの一番下にあるendCall関数で通話終了＆前のページに戻る。
 
-���ƁAdb����f�[�^����Ă���̂�db.class.php���Ă̍�������ǁA���̃f�[�^����Ă�̂�
-�킩��Ȃ���ΎQ�l�ɂ��āB���łɁA�ł��y�[�W���グ�Ƃ����炻����Q�l���x�ɁB
+
+ちなみに、このjsファイルを使うにはpeer.js　→　multiparty.js　→　multiTalk.js
+の順で読み込んで。
+
+あと、dbからデータ取ってくるのにdb.class.phpっての作ったけど、何のデータ取ってんのか
+わかんなければ参考にして。ついでに、でもページも上げとくからそれも参考程度に。
 
 
