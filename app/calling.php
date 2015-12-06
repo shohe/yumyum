@@ -4,8 +4,9 @@
     require_once("./modules/YumDB.class.php");
     $yumDB = new YumDB();
     $friends = null;
-    $user = $yumDB->selectUser($_GET['id']);
+    $user = null;
     $isMulti = ($_GET['multi'] == 'true') ? true : false;
+    $user = $yumDB->selectUser($_GET['id']);
     if ($isMulti) {
         $friends = $yumDB->selectUsers($_GET['callId']);
     } else {
@@ -44,6 +45,11 @@
         <span></span>
     </div>
 
+    <input type="hidden" id="peerID" value="<?php echo $friends->getPhoneNumber(); ?>">
+    <input type="hidden" id="myID" value="<?php echo $user->getPhoneNumber(); ?>">
+    <video id="my-video" autoplay="autoplay"></video>
+    <div id="streams"></div>
+
     <div id="menus">
         <i id="menu-controller" class="fa fa-plus-circle tuio-tapEvent"></i>
         <div id="menu-phone" class="menu-wrap tuio-tapEvent" style="background:rgba(255,255,255,0.4);"><i class="fa fa-phone"></i></div>
@@ -61,9 +67,15 @@
     <script src="../lib/slider/jquery.bxslider.js"></script>
     <script src="../lib/jquery-transform/jquery-css-transform.js"></script>
     <script src="../lib/jquery-transform/jquery-animate-css-rotate-scale.js"></script>
+    <script src="../lib/peer/peer.js"></script>
+    <script src="../lib/peer/multiparty.js"></script>
+    <script src="../lib/peer/multiTalk.js"></script>
     <script src="./js/init.js"></script>
     <script src="./js/menu.js"></script>
     <script src="./js/time.js"></script>
     <script src="./js/calling.js"></script>
+
+    <script type="text/javascript">setUpPeer()</script>
+    <script type="text/javascript">//makeCall("<?php echo $friends->getPhoneNumber(); ?>")</script>
 </body>
 </html>

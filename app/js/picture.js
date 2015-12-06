@@ -77,27 +77,26 @@ function addPicture(image) {
     });
 };
 
-// init
-$(function() {
-    var uploadPicture = $("#upload-picture");
 
-    var init = function() {
-        uploadPicture.css({left : SCREEN_W, opacity: 0}, 1000);
-        uploadPicture.animate({left : 0, opacity: 1}, 1000);
-    }
-    uploadPicture.on('back', function() {
-        uploadPicture.animate({left : SCREEN_W, opacity: 0}, 1000);
-    });
+function init_addPicture(image) {
+    setTimeout(function() {
+        image.css({
+            left:SCREEN_W/2-image.width()/2,
+            top:SCREEN_H/2-image.height()/2-100,
+            opacity:0,
+            transform: 'rotate(' + (( ( Math.random() * -15 ) + 15 ) * Math.PI) + 'deg)'
+        });
+        image.animate({opacity:1}, 500);
+    }, 1000);
 
-    init();
+    $("#upload-picture").append(image);
 
-    // test ========================
     $('#upload-picture img').on('tapDown', function(e, x, y) {
         $("#upload-picture .tuio-tapEvent").each( function() {
-            $(this).removeClass('activeFingerAction');
+            $(this).removeClass('activeFingerAction').addClass('pictures');
         });
         select = $(this);
-        select.addClass('activeFingerAction');
+        select.addClass('activeFingerAction').removeClass('pictures');
         isSelect = true;
 
         offsetDiff.p = x - $(this).offset().left;
@@ -117,14 +116,28 @@ $(function() {
 
     $('#upload-picture img').on('pichAction', function(e, dis) {
         isSelect = false;
-        $(this).css({width:'+='+dis, top:'-='+dis/2, left:'-='+dis/2});
+        $(this).css({width:'+='+dis*1.5, top:'-='+dis*1.5/2, left:'-='+dis*1.5/2});
     });
 
     $('#upload-picture img').on('rotateAction', function(e, radian) {
         isSelect = false;
         $(this).css({transform: 'rotate(' + (radian * Math.PI * -10) + 'deg)'});
     });
-    // ========================
+};
+
+// init
+$(function() {
+    var uploadPicture = $("#upload-picture");
+
+    var init = function() {
+        uploadPicture.css({left : SCREEN_W, opacity: 0}, 1000);
+        uploadPicture.animate({left : 0, opacity: 1}, 1000);
+    }
+    uploadPicture.on('back', function() {
+        uploadPicture.animate({left : SCREEN_W, opacity: 0}, 1000);
+    });
+
+    init();
 })
 
 
@@ -137,7 +150,7 @@ $(function() {
         .done(function(data) {
             $(data).find('div').each(function(){
                 if ($(this).is('.OldMedia-photoContainer')) {
-                    addPicture($(this).find('img').removeAttr('style').addClass('tuio-tapEvent'));
+                    addPicture($(this).find('img').removeAttr('style').addClass('tuio-tapEvent').addClass('pictures'));
                     return false;
                 }
             });
@@ -154,9 +167,31 @@ $(function() {
         })
     }
 
+    var init_imgget = function(url) {
+        $.ajax({ dataType: "html", url: url })
+        .done(function(data) {
+            $(data).find('div').each(function(){
+                if ($(this).is('.OldMedia-photoContainer')) {
+                    init_addPicture($(this).find('img').removeAttr('style').addClass('tuio-tapEvent').addClass('pictures'));
+                    return false;
+                }
+            });
+        })
+    }
+
+    var init_httpget = function(url) {
+        $.ajax({ dataType: "html", url: url })
+        .done(function(data) {
+            start = data.indexOf('<title>') + 7;
+            end = data.indexOf('</title>');
+            tw_url = data.substr( start, end - start );
+            init_imgget(tw_url);
+        })
+    }
+
     var init = function() {
         for (var i = 0; i < json_url.length; i++) {
-            httpget(json_url[i]);
+            init_httpget(json_url[i]);
         }
     }
 

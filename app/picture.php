@@ -16,6 +16,7 @@ header('Access-Control-Allow-Origin: *');
     $twitter = new TwitterOAuth($consumerKey,$consumerSecret,$accessToken,$accessTokenSecret);
     $req = $twitter->get("statuses/home_timeline", array("count" => 25, "exclude_replies" => true));
     if (isset($req)) {
+        // var_dump($req[1]);
         foreach ($req as $key => $val) {
             //var_dump($req[$key]);
             if (strstr($req[$key]->text, 'https://t.co/')) {

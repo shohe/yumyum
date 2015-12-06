@@ -48,7 +48,7 @@ $(function() {
     buttonSet.css({top:SCREEN_H/2 - buttonSet.height()/2-30, left:SCREEN_W/2 - buttonSet.width()/2-30});
     var _left = buttonSet.offset().left + 70;
     var _middle = buttonSet.offset().left*2 + 8;
-    var _right = buttonSet.offset().left*3 - 55;
+    var _right = buttonSet.offset().left*3 - 56;
     circle.css({top:buttonSet.offset().top - 20, left:_left});
     discription.fadeIn(1000);
 
