@@ -321,7 +321,22 @@ transform: scale3d(0.8, 0.5, 1);
     border: 3px solid rgba(255, 255, 255, 0.5);
     position: absolute;
 }
-
+#eraser {
+    position: absolute;
+    right: -5px;
+    top: 15px;
+    height: 130px;
+    width: auto;
+}
+#penWidth {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 2px #fff solid;
+    z-index: 10;
+    opacity: 0;
+}
 
 /* ------------------------------------------- */
 /*                call.php                     */

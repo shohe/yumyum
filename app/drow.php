@@ -21,7 +21,10 @@
     <h4 id="subtitle-yumyum" class="small-text-white">知識を美味しくいただきます。</h4>
     <div id="time-num-group"></div>
 
+    <div id="penWidth"></div>
+
     <div id="container">
+        <img id="eraser" class="tuio-tapEvent" src="./images/eraser.png" alt="" />
         <a class="pallet" style="background: #4d4d4d;"></a>
         <a class="pallet" style="background: #fff;"></a>
         <a class="pallet" style="background: #187e9e;"></a>

@@ -20,6 +20,15 @@ var drawerSketch = Sketch.create({
         CLIENT = new Tuio.Client({
             host: "http://localhost:5000"
         });
+
+        $("#eraser").on('tapUp', function() {
+            clearAll();
+        })
+
+        $("#penWidth").css({
+            left: SCREEN_W/2 - $("#penWidth").width()/2,
+            top: SCREEN_H/2 - $("#penWidth").height()/2
+        });
     },
 
     update: function() {
@@ -72,14 +81,12 @@ function updatePenWidth(point) {
     SAVE_POINT_FOR_PEN = (SAVE_POINT_FOR_PEN == null) ? point : SAVE_POINT_FOR_PEN;
     var dis = calcDistance(SAVE_POINT_FOR_PEN.x, SAVE_POINT_FOR_PEN.y, point.x, point.y);
     PEN_WIDTH = (dis >= MIN_WIDTH) ? dis : MIN_WIDTH;
-
-    drawerSketch.clear();
-    drawerSketch.strokeStyle = "#fff";
-    drawerSketch.lineWidth = 1.5;
-    drawerSketch.beginPath();
-    drawerSketch.arc(SCREEN_W/2 - PEN_WIDTH/2 + dis/2, SCREEN_H/2 - PEN_WIDTH/2 + dis/2, PEN_WIDTH, false, Math.PI * 2, false);
-    drawerSketch.closePath();
-    drawerSketch.stroke();
+    $("#penWidth").css({
+        width: PEN_WIDTH,
+        height: PEN_WIDTH,
+        left: SCREEN_W/2 - PEN_WIDTH/2,
+        top: SCREEN_H/2 - PEN_WIDTH/2
+    });
 }
 
 onAddTuioCursor = function(addCursor) {
@@ -90,6 +97,7 @@ onAddTuioCursor = function(addCursor) {
     if (IS_CHANGE_WIDTH) {
         var p = point[0];
         updatePenWidth(p);
+        $("#penWidth").css({opacity:1});
     }
 },
 
@@ -117,9 +125,9 @@ onRemoveTuioCursor = function(removeCursor) {
     chkColor( point );
 
     if (IS_CHANGE_WIDTH) {
-        drawerSketch.clear();
         IS_CHANGE_WIDTH = false;
         SAVE_POINT_FOR_PEN = null;
+        $("#penWidth").css({opacity:0});
     }
 };
 
@@ -135,7 +143,6 @@ chkColor = function(point) {
         if (COLOURS_P[i].x <= point[0].x && COLOURS_P[i].x + COLOURS_P[i].w >= point[0].x &&
             COLOURS_P[i].y <= point[0].y && COLOURS_P[i].y + COLOURS_P[i].h >= point[0].y) {
             if (i == COLOURS_P.length - 1) {
-                drawerSketch.clear();
                 IS_CHANGE_WIDTH = true;
                 return;
             }
@@ -155,3 +162,7 @@ changeColor = function(position) {
         }
     }
 };
+
+clearAll = function() {
+    drawerSketch.clear();
+}
