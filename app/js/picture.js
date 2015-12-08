@@ -145,15 +145,26 @@ $(function() {
 // editor
 $(function() {
     var editor = $('#edit-picture');
+    var margin = 60;
     var init = function() {
 
     }
 
-                        editor.on('changePosition', function(e, picture) {
+    editor.on('changePosition', function(e, picture) {
+        var pic = $(picture);
         // editor.css({
-        //     left: picture.offset().x,
-        //     top: picture.offset().y,
+        //     left: SCREEN_W - margin,
+        //     top:  SCREEN_H - margin,
         // });
+        // editor.animate({opacity:1}, 1000);
+    });
+
+    editor.on('tapUp', function(e, x, y) {
+        $('#upload-picture').animate({left:-SCREEN_W}, 1000);
+        editor.animate({opacity:0}, 1000);
+        window.setTimeout(function() {
+            alert("transition page.");
+        }, 1100);
     });
 
     init();
@@ -167,8 +178,12 @@ $(function() {
         $.ajax({ dataType: "html", url: url })
         .done(function(data) {
             $(data).find('div').each(function(){
-                if ($(this).is('.OldMedia-photoContainer')) {
-                    addPicture($(this).find('img').removeAttr('style').addClass('tuio-tapEvent').addClass('pictures'));
+                // if ($(this).is('.OldMedia-photoContainer')) {
+                //     addPicture($(this).find('img').removeAttr('style').addClass('tuio-tapEvent').addClass('pictures'));
+                //     return false;
+                // }
+                if ($(this).is('.AdaptiveMedia-photoContainer')) {
+                    init_addPicture($(this).find('img').removeAttr('style').addClass('tuio-tapEvent').addClass('pictures'));
                     return false;
                 }
             });
@@ -189,7 +204,11 @@ $(function() {
         $.ajax({ dataType: "html", url: url })
         .done(function(data) {
             $(data).find('div').each(function(){
-                if ($(this).is('.OldMedia-photoContainer')) {
+                // if ($(this).is('.OldMedia-photoContainer')) {
+                //     init_addPicture($(this).find('img').removeAttr('style').addClass('tuio-tapEvent').addClass('pictures'));
+                //     return false;
+                // }
+                if ($(this).is('.AdaptiveMedia-photoContainer')) {
                     init_addPicture($(this).find('img').removeAttr('style').addClass('tuio-tapEvent').addClass('pictures'));
                     return false;
                 }

@@ -15,15 +15,21 @@ header('Access-Control-Allow-Origin: *');
     $accessTokenSecret = "NbZ7R9E7BnlYWnZyJ4aVAFWg4Mg6WTZ9PgzaeLtdHZ51R";
     $twitter = new TwitterOAuth($consumerKey,$consumerSecret,$accessToken,$accessTokenSecret);
     $req = $twitter->get("statuses/home_timeline", array("count" => 25, "exclude_replies" => true));
+
     if (isset($req)) {
-        // var_dump($req[1]);
-        foreach ($req as $key => $val) {
-            //var_dump($req[$key]);
-            if (strstr($req[$key]->text, 'https://t.co/')) {
-                $urls[] = strstr($req[$key]->text, 'https://t.co/');
+        // $obj = json_decode($req);
+        // $errors = $obj;
+        // var_dump($req);
+        if (isset($req)) {
+            foreach ($req as $key => $val) {
+                if (strstr($req[$key]->text, 'https://t.co/')) {
+                    $urls[] = strstr($req[$key]->text, 'https://t.co/');
+                }
             }
+            $json_url = json_encode($urls);
+        } else {
+
         }
-        $json_url = json_encode($urls);
     }
 ?>
 <head>
