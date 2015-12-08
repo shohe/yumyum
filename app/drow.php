@@ -23,6 +23,8 @@
 
     <div id="penWidth"></div>
 
+    <canvas id="test_canvas"></canvas>
+
     <div id="container">
         <img id="eraser" class="tuio-tapEvent" src="./images/eraser.png" alt="" />
         <a class="pallet" style="background: #4d4d4d;"></a>
@@ -49,6 +51,7 @@
     <script src="../lib/tuio/socket.io.js"></script>
     <script src="../lib/tuio/Tuio.min.js"></script>
     <script src="../lib/slider/jquery.bxslider.js"></script>
+    <script src="../lib/sketch/easeljs.min.js"></script>
     <script src="../lib/sketch/sketch.min.js"></script>
     <script src="../lib/jquery-transform/jquery-css-transform.js"></script>
     <script src="../lib/jquery-transform/jquery-animate-css-rotate-scale.js"></script>

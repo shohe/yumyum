@@ -49,6 +49,7 @@ function addPicture(image) {
         });
         select = $(this);
         select.addClass('activeFingerAction');
+        $('#edit-picture').trigger("changePosition", select);
         isSelect = true;
 
         offsetDiff.p = x - $(this).offset().left;
@@ -97,6 +98,7 @@ function init_addPicture(image) {
         });
         select = $(this);
         select.addClass('activeFingerAction').removeClass('pictures');
+        $('#edit-picture').trigger("changePosition", select);
         isSelect = true;
 
         offsetDiff.p = x - $(this).offset().left;
@@ -140,6 +142,22 @@ $(function() {
     init();
 })
 
+// editor
+$(function() {
+    var editor = $('#edit-picture');
+    var init = function() {
+
+    }
+
+                        editor.on('changePosition', function(e, picture) {
+        // editor.css({
+        //     left: picture.offset().x,
+        //     top: picture.offset().y,
+        // });
+    });
+
+    init();
+});
 
 // twitter
 $(function() {

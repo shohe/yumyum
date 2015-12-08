@@ -336,6 +336,7 @@ transform: scale3d(0.8, 0.5, 1);
     border: 2px #fff solid;
     z-index: 10;
     opacity: 0;
+    box-shadow: 0 0 10px #aaa;
 }
 
 /* ------------------------------------------- */
@@ -573,6 +574,23 @@ transform: scale3d(0.8, 0.5, 1);
     height: auto;
     position: absolute;
     opacity: 0;
+}
+#edit-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    font-size: 0.5em;
+    position: absolute;
+    top: 26px;
+    left: 27px;
+    opacity: 1;
+    color: #fff;
+}
+#edit-picture i {
+    position: relative;
+    top: 10px;
+    left: 10px;
 }
 .activeFingerAction {
     border-color: #008fdf;
