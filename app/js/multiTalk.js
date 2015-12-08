@@ -146,6 +146,7 @@ function multiCallProcess() {
 		var vNode = MultiParty.util.createVideoNode(video);
 		vNode.volume = 0;
 		vNode.flamerate = 15;
+		vNode.class = "web-cam";
 		$(vNode).appendTo('#streams');
 	}).on('peer_ms', function(video) {
 		//通話相手のビデオを表示

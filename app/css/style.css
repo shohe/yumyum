@@ -586,3 +586,7 @@ transform: scale3d(0.8, 0.5, 1);
     border-width: 6px;
     border-style: solid;
 }
+
+#could-not-call {
+	display: none;
+}
