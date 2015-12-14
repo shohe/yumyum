@@ -3,6 +3,7 @@
 <?php
     require_once("./modules/YumDB.class.php");
     $yumDB = new YumDB();
+    $user = $yumDB->selectUser($_GET['id']);
     $friends = array_chunk($yumDB->selectFriends($_GET['id']),10);
 ?>
 <head>
@@ -29,19 +30,29 @@
                 <div class="friends-list-wrap">
                     <?php for ($t = 0; $t < count($friends[$i]); $t++) { ?>
                     <div class="friends-list">
-                        <div class="img-wrap tuio-tapEvent"><?php echo "<img src='".$friends[$i][$t]->getIcon()."' alt='".$friends[$i][$t]->getID()."' />"; ?></div>
+                        <div class="img-wrap tuio-tapEvent">
+                        	<?php echo "<img src='".$friends[$i][$t]->getIcon()."' alt='".$friends[$i][$t]->getID()."' />"; ?>
+                        	<input type="hidden" class="callTo" value="<?php echo $friends[$i][$t]->getPhoneNumber(); ?>">
+                        </div>
                         <div class="user-name"><?php echo $friends[$i][$t]->getName(); ?></div>
+
                     </div>
                     <?php } ?>
                 </div>
             </li>
-            <?php } $yumDB->close(); ?>
+            <?php } ?>
         </ul>
     </div>
 
     <div id="phone-mark" class="tuio-tapEvent"><img class="phone-mark-anim" src="./images/phone.png" alt="" /></div>
 
-    <div id="call-load"></div>
+    <div id="could-not-call">つながりませんでした。</div>
+    <div id="call-load">
+    	<div class="img-wrap tuio-tapEvent"><?php //echo "<img src='".$friends->getIcon()."' alt='".$friends->getID()."' />"; ?></div>
+        <div class="user-name"><?php //echo $friends->getName(); ?></div>
+        <div class="user-comment"><?php //echo $friends->getComment(); ?></div>
+    </div>
+    <?php $yumDB->close(); ?>
     <div id="preloader">
         <span></span>
         <span></span>
@@ -67,9 +78,16 @@
     <script src="../lib/slider/jquery.bxslider.js"></script>
     <script src="../lib/jquery-transform/jquery-css-transform.js"></script>
     <script src="../lib/jquery-transform/jquery-animate-css-rotate-scale.js"></script>
+    <script src="../lib/peer/peer.js"></script>
+    <script src="../lib/peer/multiparty.js"></script>
+    <script src="../lib/peer/multiTalk.js"></script>
     <script src="./js/init.js"></script>
     <script src="./js/menu.js"></script>
     <script src="./js/time.js"></script>
     <script src="./js/call.js"></script>
+
+    <input type="hidden" id="myID" value="<?php echo $user->getPhoneNumber() ?>">
+    <script type="text/javascript">setUpPeer();</script>
+    <div id="streams"></div>
 </body>
 </html>
