@@ -90,6 +90,8 @@ $(function() {
 $(function() {
     var imgWrap = $('.img-wrap');
     var phone = $('#phone-mark');
+    var back = $('#backToCall');
+    var endCallButton = $('#endCallButton');
 
     if (!IS_MULTI) BEFORE_TOUCH_USER = null;
     phone.css({bottom:-200, right:-20});
@@ -146,6 +148,14 @@ $(function() {
 
     phone.on('hidden', function() {
         $(this).animate({bottom:-200, right:-20}, { duration: 2300, easing: 'easeOutExpo' });
+    });
+
+    back.on('tapDown', function(e, x, y) {
+    	backToCall();
+    });
+
+    endCallButton.on('tapDown', function(e, x, y) {
+    	endCall();
     });
 });
 

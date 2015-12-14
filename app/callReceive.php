@@ -8,12 +8,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>電話が来ました</title>
-	<script type="text/javascript" src="./multiTalk.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="../lib/peer/multiTalk.js" charset="UTF-8"></script>
 </head>
 <body>
 	<p><?php echo $callFrom->getName() ?>さんから電話が来ました。</p>
-	<input type="submit" onclick="callPermit();" value="出る" id="trueButton" class="permitButton">
-	<input type="submit" onclick="callCancel();" value="出ない" id="cancelButton" class="permitButton">
+	<input type="button" onclick="callPermit();" value="出る" id="trueButton">
+	<input type="button" onclick="callCancel();" value="出ない" id="cancelButton">
 <script type="text/javascript">
 	function callPermit() {
 		opener.callPermit = true;
