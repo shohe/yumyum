@@ -18,9 +18,11 @@
 </head>
 <body>
     <canvas id="canvas"></canvas>
+
     <h2 id="title-yumyum" class="tuio-tapEvent">yum yum</h2>
     <h4 id="subtitle-yumyum" class="small-text-white">知識を美味しくいただきます。</h4>
     <div id="time-num-group"></div>
+
     <div id="friends-wrap">
         <ul id="friends-slider" class="tuio-tapEvent">
             <?php for ($i = 0; $i < count($friends); $i++) { ?>
@@ -44,7 +46,6 @@
 
     <div id="phone-mark" class="tuio-tapEvent"><img class="phone-mark-anim" src="./images/phone.png" alt="" /></div>
 
-    <div id="could-not-call">つながりませんでした。</div>
     <div id="call-load">
     	<div class="img-wrap tuio-tapEvent"><?php //echo "<img src='".$friends->getIcon()."' alt='".$friends->getID()."' />"; ?></div>
         <div class="user-name"><?php //echo $friends->getName(); ?></div>
@@ -57,6 +58,10 @@
         <span></span>
         <span></span>
         <span></span>
+    </div>
+    <div id="could-not-call">
+    	<p>つながりませんでした。</p>
+    	<input type="button" id="backToCall" value="戻る" class="tuio-tapEvent">
     </div>
 
     <div id="menus">
@@ -84,8 +89,16 @@
     <script src="./js/time.js"></script>
     <script src="./js/call.js"></script>
 
-    <input type="hidden" id="myPeerID" value="<?php echo $user->getPhoneNumber(); ?>">
+    <input type="hidden" id="myPeerID" value="<?php echo $user->getPhoneNumber() ?>">
+    <input type="hidden" id="myID" value="<?php echo $_GET["id"] ?>">
     <script type="text/javascript">setUpPeer();</script>
     <div id="streams"></div>
+    <div id="endCallButtonDiv">
+    	<input type="button" id="endCallButton" value="通話終了" class="tuio-tapEvent">
+    </div>
+    <!--
+    	<div id="my-video"></div>
+		<div id="their-video"></div>
+    -->
 </body>
 </html>
