@@ -18,11 +18,9 @@
 </head>
 <body>
     <canvas id="canvas"></canvas>
-
     <h2 id="title-yumyum" class="tuio-tapEvent">yum yum</h2>
     <h4 id="subtitle-yumyum" class="small-text-white">知識を美味しくいただきます。</h4>
     <div id="time-num-group"></div>
-
     <div id="friends-wrap">
         <ul id="friends-slider" class="tuio-tapEvent">
             <?php for ($i = 0; $i < count($friends); $i++) { ?>
@@ -86,7 +84,7 @@
     <script src="./js/time.js"></script>
     <script src="./js/call.js"></script>
 
-    <input type="hidden" id="myID" value="<?php echo $user->getPhoneNumber() ?>">
+    <input type="hidden" id="myPeerID" value="<?php echo $user->getPhoneNumber(); ?>">
     <script type="text/javascript">setUpPeer();</script>
     <div id="streams"></div>
 </body>
