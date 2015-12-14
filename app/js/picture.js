@@ -149,7 +149,8 @@ $(function() {
         $.ajax({ dataType: "html", url: url })
         .done(function(data) {
             $(data).find('div').each(function(){
-                if ($(this).is('.OldMedia-photoContainer')) {
+                //if ($(this).is('.OldMedia-photoContainer')) {
+                if ($(this).is('.AdaptiveMedia-photoContainer')) {
                     addPicture($(this).find('img').removeAttr('style').addClass('tuio-tapEvent').addClass('pictures'));
                     return false;
                 }
@@ -170,8 +171,10 @@ $(function() {
     var init_imgget = function(url) {
         $.ajax({ dataType: "html", url: url })
         .done(function(data) {
+            console.log(data);
             $(data).find('div').each(function(){
-                if ($(this).is('.OldMedia-photoContainer')) {
+                //if ($(this).is('.OldMedia-photoContainer')) {
+                if ($(this).is('.AdaptiveMedia-photoContainer')) {
                     init_addPicture($(this).find('img').removeAttr('style').addClass('tuio-tapEvent').addClass('pictures'));
                     return false;
                 }
