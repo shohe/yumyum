@@ -36,36 +36,36 @@ html, body {
     padding-bottom: 25px;
     border: 3px solid rgba(255, 255, 255, 0.7);
     border-radius: 5px;
-    color: rgba(255, 255, 255, 0.7);
+color: rgba(255, 255, 255, 0.7);
     position: absolute;
     text-align: center;
     cursor: pointer;
-    -webkit-transition: background-color 0.3s, color 0.3s;
-    transition: background-color 0.3s, color 0.3s;
+-webkit-transition: background-color 0.3s, color 0.3s;
+transition: background-color 0.3s, color 0.3s;
     opacity: 0;
 }
 #get-stated-button::before {
-    content: '';
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    bottom: -20px;
-    right: -20px;
-    background: inherit;
-    border-radius: 50px;
-    z-index: -1;
-    opacity: 0.4;
-    -webkit-transform: scale3d(0.8, 0.5, 1);
-    transform: scale3d(0.8, 0.5, 1);
+content: '';
+position: absolute;
+top: -20px;
+left: -20px;
+bottom: -20px;
+right: -20px;
+background: inherit;
+border-radius: 50px;
+z-index: -1;
+opacity: 0.4;
+-webkit-transform: scale3d(0.8, 0.5, 1);
+transform: scale3d(0.8, 0.5, 1);
 }
 .get-stated-animation {
     transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
     animation: anim-started 0.3s forwards;
 }
 @keyframes anim-started {
-    60% { transform: scale3d(0.8, 0.8, 1); }
-    85% { transform: scale3d(1.1, 1.1, 1); }
-    100% { transform: scale3d(1, 1, 1); }
+60% { transform: scale3d(0.8, 0.8, 1); }
+85% { transform: scale3d(1.1, 1.1, 1); }
+100% { transform: scale3d(1, 1, 1); }
 }
 
 /* menus */
@@ -336,7 +336,6 @@ html, body {
     border: 2px #fff solid;
     z-index: 10;
     opacity: 0;
-    box-shadow: 0 0 10px #aaa;
 }
 
 /* ------------------------------------------- */
@@ -544,21 +543,36 @@ html, body {
     100% { transform: scale3d(1, 1, 1); }
 }
 
-#streams .web-cam {
+#streams video {
     width: 300px;
     height: 300px;
     border-radius: 50%;
     -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+    -moz-mask-image: -moz-radial-gradient(circle, white 100%, black 100%);
     mask-image: radial-gradient(circle, white 100%, black 100%);
     float: left;
     background: #eee;
+    /*position: absolute;*/
 }
 
+#endCallButton {
+	display: none;
+}
+
+/*
 #streams video {
     width: 300px;
     position: absolute;
 }
+*/
 
+#could-not-call, #backToCall {
+	display: none;
+}
+
+#could-not-call {
+	width: 400px;
+}
 
 
 
@@ -574,24 +588,6 @@ html, body {
     height: auto;
     position: absolute;
     opacity: 0;
-}
-#edit-picture {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 3px solid #fff;
-    font-size: 0.5em;
-    position: absolute;
-    top: 26px;
-    left: 27px;
-    opacity: 0;
-    color: #fff;
-    z-index: 100;
-}
-#edit-picture i {
-    position: relative;
-    top: 10px;
-    left: 10px;
 }
 .activeFingerAction {
     border-color: #008fdf;
