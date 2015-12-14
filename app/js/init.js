@@ -17,6 +17,7 @@ if($("#canvas").get(0)) {
 $(function() {
     var client = new Tuio.Client({
         host: "http://localhost:5000"
+        // host: "http://192.168.193.41:5000"
     }),
 
     onConnect = function() {

@@ -131,7 +131,7 @@ $(function() {
     });
 
     var init = function() {
-        dottedLine.css({left: SCREEN_W/2 - dottedLine.width()/2-10, top: SCREEN_H/2 - dottedLine.height()/2-38});
+        dottedLine.css({left: SCREEN_W/2 - dottedLine.width()/2-30, top: SCREEN_H/2 - dottedLine.height()/2-38});
         dottedLine.addClass("cercle-anim");
         userWrap.css("bottom", -SCREEN_H / 2);
         var mouseEvent = document.createEvent("MouseEvents");
@@ -156,8 +156,10 @@ $(function() {
     }
 
     userWrap.on('display-users', function() {
+        usersSlider.css({top:0});
         $(this).stop().animate({opacity: "1.0", bottom: SCREEN_H / 2 - $(this).height()/2}, 700);
         dottedLine.stop().animate({opacity: "1.0"}, 700);
+        //window.setTimeout( 'alert( "test" )', 10 );
     });
 
     userWrap.on('decide-users', function() {
@@ -184,9 +186,9 @@ $(function() {
     var hashi = $("#hashi");
 
     var init = function() {
-        gohanSet.css({left: SCREEN_W/2 - gohanSet.width()/2-15, top: SCREEN_H/2 - gohanSet.height()/2-30});
+        gohanSet.css({left: SCREEN_W/2 - gohanSet.width()/2-15, top: SCREEN_H/2 - gohanSet.height()/2});
         gohanSet.stop().animate({opacity: "1.0"}, 700);
-        hashi.css({left: SCREEN_W/2 - hashi.width()/2-20, top: SCREEN_H/2 - hashi.height()-10});
+        hashi.css({left: SCREEN_W/2 - hashi.width()/2-20, top: gohanSet.offset().top+gohanSet.height()/2-8});
         hashi.stop().animate({opacity: "1.0"}, 700);
     }
 
