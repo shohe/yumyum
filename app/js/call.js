@@ -140,6 +140,8 @@ $(function() {
         $('#friends-wrap').animate({right: SCREEN_W, opacity:0}, { duration: 2300, easing: 'easeOutExpo' });
         $(this).animate({right: SCREEN_W, opacity:0}, { duration: 2300, easing: 'easeOutExpo' });
         $("#call-load").trigger("display");
+        makeCall(BEFORE_TOUCH_USER.find('input').attr('value'));
+        callLoad();
     });
 
     phone.on('hidden', function() {
@@ -155,6 +157,7 @@ $(function() {
         preloader.css({top:SCREEN_H/2+75, left:SCREEN_W/2-preloader.width()/2-15,opacity:0});
     }
 
+    /*
     callLoad.on("display", function() {
         if (IS_MULTI) {
             CALL_ID = BEFORE_TOUCH_USER
@@ -168,7 +171,32 @@ $(function() {
             window.location.href = "calling.php?id="+USER_ID+"&multi="+IS_MULTI+"&callId="+CALL_ID+"&menuAnim=false";
         }, 1000 );
     });
+    */
 
     init();
 
 });
+
+function callLoad () {
+    var callLoad = $("#call-load");
+    var preloader = $("#preloader");
+
+    var init = function() {
+        callLoad.css({left:SCREEN_W/2 - callLoad.width()/2, top:SCREEN_H/2 - callLoad.height()/2});
+        preloader.css({left:SCREEN_W/2 - preloader.width()/2, top:SCREEN_H/2 - preloader.height()/2 + 80});
+        callLoad.animate({opacity:1}, 1000);
+        preloader.animate({opacity:1}, 1000);
+    }
+
+    callLoad.on("connect", function() {
+        callLoad.animate({top:-SCREEN_H/2,opacity:0}, 1000);
+        preloader.animate({top:-SCREEN_H/2,opacity:0}, 1300);
+    });
+
+    callLoad.on("back", function() {
+        callLoad.animate({left:SCREEN_W ,opacity:0}, 1000);
+        preloader.animate({left:SCREEN_W ,opacity:0}, 1000);
+    });
+
+    init();
+}
