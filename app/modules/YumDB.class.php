@@ -52,6 +52,22 @@ class YumDB {
         }
     }
 
+    public function selectUserByPhone( $phoneNumber ) {
+    	try {
+    		$sql = "SELECT * FROM user WHERE phone_number = :phone";
+    		$stmh = $this->pdo->prepare( $sql );
+    		$stmh->bindValue( ":phone", $phoneNumber );
+    		$stmh->execute();
+    		$user = null;
+    		while ($row = $stmh->fetch(PDO::FETCH_ASSOC)) {
+    			$user = new User($row["id"], $row["name"], $row["age"], $row["icon"], $row["phone_number"], $row["comment"], $row["table_id"]);
+    		}
+    		return $user;
+    	} catch (Exception $e) {
+    		echo $e->getMessage();
+    	}
+    }
+
     public function selectUsers( $ids ) {
         try {
             $split_ids = explode(",", $ids);
