@@ -50,7 +50,7 @@ header('Access-Control-Allow-Origin: *');
     <h2 id="title-yumyum" class="tuio-tapEvent">yum yum</h2>
     <h4 id="subtitle-yumyum" class="small-text-white">知識を美味しくいただきます。</h4>
     <div id="time-num-group"></div>
-    <div id="edit-picture" class="tuio-tapEvent"><i class="fa fa-paint-brush"></i></div>
+    <!-- <div id="edit-picture" class="tuio-tapEvent"><i class="fa fa-paint-brush"></i></div> -->
 
     <!-- <div><img id="test-picture" class="tuio-tapEvent" src="./images/user/user_test.jpg" alt="" /></div> -->
 

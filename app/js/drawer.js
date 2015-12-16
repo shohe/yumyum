@@ -20,6 +20,7 @@ var drawerSketch = Sketch.create({
         this.initColor();
         CLIENT = new Tuio.Client({
             host: "http://localhost:5000"
+            //host: "http://192.168.193.43:5000"
         });
 
         $("#eraser").on('tapUp', function() {
