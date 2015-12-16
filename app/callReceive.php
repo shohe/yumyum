@@ -1,7 +1,8 @@
 <?php
 	require_once './modules/YumDB.class.php';
 	$yumDB = new YumDB();
-	$callFrom = $yumDB->selectUserByPhone($_GET["from"]);
+	$callFromId = $_GET["from"];
+	$callFrom = $yumDB->selectUserByPhone($callFromId);
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,12 +18,12 @@
 <script type="text/javascript">
 	function callPermit() {
 		opener.callPermit = true;
-		opener.callPermitCheck();
+		opener.callPermitCheck('<?php echo $callFromId ?>');
 		window.close();
 	}
 	function callCancel() {
 		opener.callPermit = false;
-		opener.callPermitCheck();
+		opener.callPermitCheck(null);
 		window.close();
 	}
 </script>
