@@ -22,8 +22,8 @@
 	<canvas id="canvas"></canvas>
 	<p id="callFromTitle"><?php echo $callFrom->getName() ?>さんから電話が来ました。</p>
 	<div id="permitButtonDiv">
-		<input type="button" value="出る" id="trueButton">
-		<input type="button" value="出ない" id="cancelButton">
+		<input type="button" value="出る" id="trueButton" onclick="callPermit()">
+		<input type="button" value="出ない" id="cancelButton" onclick="callCancel()">
 	</div>
 <script type="text/javascript">
 // SCREEN_W = $(document).width();
