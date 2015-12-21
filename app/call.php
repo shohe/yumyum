@@ -47,9 +47,11 @@
     <div id="phone-mark" class="tuio-tapEvent"><img class="phone-mark-anim" src="./images/phone.png" alt="" /></div>
 
     <div id="call-load">
+    	<!--
     	<div class="img-wrap tuio-tapEvent"><?php //echo "<img src='".$friends->getIcon()."' alt='".$friends->getID()."' />"; ?></div>
         <div class="user-name"><?php //echo $friends->getName(); ?></div>
         <div class="user-comment"><?php //echo $friends->getComment(); ?></div>
+        -->
         <p>発信しています...</p>
     </div>
     <?php $yumDB->close(); ?>
