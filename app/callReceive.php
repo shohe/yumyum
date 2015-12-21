@@ -10,20 +10,22 @@
 	<meta charset="UTF-8">
 	<title>電話が来ました</title>
 	<link rel="stylesheet" href="./css/style.css">
+	<!--
 	<script src="../lib/tuio/jquery-1.7.2.js"></script>
     <script src="../lib/tuio/jquery.easing.1.3.js"></script>
     <script src="../lib/tuio/lodash.js"></script>
     <script src="../lib/tuio/socket.io.js"></script>
     <script src="../lib/tuio/Tuio.min.js"></script>
     <script src="./js/init.js"></script>
+    -->
     <script type="text/javascript" src="../lib/peer/multiTalk.js" charset="UTF-8"></script>
 </head>
 <body>
 	<canvas id="canvas"></canvas>
 	<p id="callFromTitle"><?php echo $callFrom->getName() ?>さんから電話が来ました。</p>
 	<div id="permitButtonDiv">
-		<input type="button" value="出る" id="trueButton" onclick="callPermit()">
-		<input type="button" value="出ない" id="cancelButton" onclick="callCancel()">
+		<input type="button" value="出る" id="trueButton" onclick="callPermit();">
+		<input type="button" value="出ない" id="cancelButton" onclick="callCancel();">
 	</div>
 <script type="text/javascript">
 // SCREEN_W = $(document).width();
