@@ -19,6 +19,7 @@
     <title>yum yum</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <script type="text/javascript" src="./js/peer.js"></script>
     <link rel="stylesheet" href="../lib/slider/jquery.bxslider.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="../lib/font-awesome/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="./css/style.css" media="screen" title="no title" charset="utf-8">
@@ -35,6 +36,7 @@
         <div class="user-name"><?php echo $friends->getName(); ?></div>
         <div class="user-comment"><?php echo $friends->getComment(); ?></div>
     </div>
+
     <div id="preloader">
         <span></span>
         <span></span>

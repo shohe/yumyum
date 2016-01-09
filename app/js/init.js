@@ -9,15 +9,18 @@ IS_DEBUG = false;
 if($("#canvas").get(0)) {
     IS_DEBUG = true;
     CANVAS = $("#canvas").get(0);
+    console.log(CANVAS);
     CANVAS.width = SCREEN_W;
     CANVAS.height = SCREEN_H;
     CONTEXT = CANVAS.getContext("2d");
+} else {
+	console.log("ERRORだお");
 }
 
 $(function() {
     var client = new Tuio.Client({
         host: "http://localhost:5000"
-        //host: "http://192.168.193.49:5000"
+        // host: "http://192.168.193.41:5000"
     }),
 
     onConnect = function() {
