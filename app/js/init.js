@@ -9,9 +9,12 @@ IS_DEBUG = false;
 if($("#canvas").get(0)) {
     IS_DEBUG = true;
     CANVAS = $("#canvas").get(0);
+    console.log(CANVAS);
     CANVAS.width = SCREEN_W;
     CANVAS.height = SCREEN_H;
     CONTEXT = CANVAS.getContext("2d");
+} else {
+	console.log("ERRORだお");
 }
 
 $(function() {
