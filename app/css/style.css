@@ -553,6 +553,7 @@ transform: scale3d(0.8, 0.5, 1);
 #streams video {
     width: 300px;
     height: 300px;
+	margin-left: 50px;
     border-radius: 100%;
     -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
     -moz-mask-image: -moz-radial-gradient(circle, white 100%, black 100%);
@@ -568,15 +569,17 @@ transform: scale3d(0.8, 0.5, 1);
     /*height: 40px;*/
     padding: 10px 0;
     padding-bottom: 15px;
-    border: 3px solid rgba(255, 255, 255, 0.7);
+    border: 3px solid rgba(255, 255, 255, 0.2);
     border-radius: 5px;
-	color: rgba(255, 255, 255, 0.7);
+	/*color: rgba(255, 255, 255, 0.7);*/
+	color: #DEB887;
     position: absolute;
     text-align: center;
     cursor: pointer;
 	-webkit-transition: background-color 0.3s, color 0.3s;
 	transition: background-color 0.3s, color 0.3s;
 	font: 1em sans-selif;
+	font-weight: bold;
 }
 
 #endCallButton {
@@ -625,8 +628,16 @@ transform: scale3d(0.8, 0.5, 1);
 	background: #0f0;
 }
 
+#trueButton :hover{
+	background: #3fff3f;
+}
+
 #cancelButton {
 	background: #f00;
+}
+
+#cancelButton :hover{
+	background: #ff3f3f;
 }
 
 /* ------------------------------------------- */

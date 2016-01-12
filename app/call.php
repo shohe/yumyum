@@ -64,7 +64,7 @@
     </div>
     <div id="could-not-call">
     	<p>つながりませんでした。</p>
-    	<input type="button" id="backToCall" value="戻る" class="tuio-tapEvent">
+    	<input type="button" id="backToCall" value="もどる" class="tuio-tapEvent">
     </div>
 
     <div id="menus">
