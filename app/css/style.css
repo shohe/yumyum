@@ -553,7 +553,7 @@ transform: scale3d(0.8, 0.5, 1);
 #streams video {
     width: 300px;
     height: 300px;
-	margin-left: 50px;
+	margin-left: 20px;
     border-radius: 100%;
     -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
     -moz-mask-image: -moz-radial-gradient(circle, white 100%, black 100%);
@@ -584,7 +584,7 @@ transform: scale3d(0.8, 0.5, 1);
 
 #endCallButton {
 	position: absolute;
-	top: 50px;
+	top: 470px;
 }
 
 #could-not-call, #backToCall {
